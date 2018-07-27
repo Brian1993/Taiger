@@ -11,4 +11,4 @@
 ### User Story 
 - 以形象館的概念做發想，希望用戶可以更了解品牌的故事與精神
 
-<img src="taiger.gif" >
+<img src="taiger.gif" width="640">
