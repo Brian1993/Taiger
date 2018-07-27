@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/png" href="../TAIGER_LOGO_for_title.png">
+    <link rel="stylesheet" href="../css/animate.min.css">   
+    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <title>TAIGER 首頁</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: '微軟正黑體', 'Russo One', sans-serif;
+
+        }
+
+        .side_nav {
+            position: relative;
+            z-index: 15;
+        }
+
+        .toggle {
+            position: fixed;
+            top: 5%;
+            right: 5%;
+            height: 80px;
+            width: 80px;
+            z-index: 1000;
+
+        }
+
+        .toggle span {
+            display: block;
+            width: 50px;
+            height: 1px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: .3s;
+            background-color: #FFF;
+            ;
+
+        }
+
+        .toggle span:nth-child(1) {
+            transform: translate(-50%, -50%) translateY(20px)
+        }
+
+        .toggle span:nth-child(4) {
+            transform: translate(-50%, -50%) translateY(-20px)
+        }
+
+        .active span:nth-child(1) {
+            transform: translate(-50%, -50%) translateY(40px);
+            opacity: 0
+        }
+
+        .active span:nth-child(4) {
+            transform: translate(-50%, -50%) translateY(-40px);
+            opacity: 0;
+        }
+
+        .active span:nth-child(2) {
+            transform: translate(-50%, -50%) rotate(45deg)
+        }
+
+        .active span:nth-child(3) {
+            transform: translate(-50%, -50%) rotate(-45deg)
+        }
+
+        .toggle:hover span:nth-child(1) {
+            transform: translate(-50%, -50%) translateY(25px)
+        }
+
+        .toggle:hover .hover {
+            width: 25px;
+        }
+
+        .toggle:hover span:nth-child(4) {
+            transform: translate(-50%, -50%) translateY(-25px)
+        }
+
+        .side_bar {
+            transition: .7s;
+            height: 100vh;
+            ;
+            width: 33.33vw;
+            left: -34%;
+            position: fixed;
+            top: 0;
+            background: rgba(0, 0, 0, .8);
+            ;
+            color: #fff;
+            font-size: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            ;
+        }
+
+        .side_bar a {
+            text-decoration: none;
+            color: #fff;
+
+        }
+
+        .side1 li {
+            list-style: none;
+        }
+
+        .side_bar:hover {
+
+            background: rgba(33, 33, 33, .8);
+            ;
+            ;
+        }
+
+        .side_bar:hover a {
+            color: orange;
+        }
+
+        .rwd_nav {
+            display: none;
+            /* display: flex;         */
+            width: 100%;
+            height: 100vh;
+            position: fixed;
+            left: -100%;
+            background: rgba(0, 0, 0, .8);
+            list-style: none;
+            z-index: 150;
+            transition: .8s;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rwd_nav ul {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            /* position: fixed;; */
+            /* z-index:100; */
+            flex-direction: column;
+            align-content: center;
+            justify-content: center;
+
+        }
+
+        .rwd_side {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .rwd_side a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 30px;
+        }
+
+        .rwd_side:hover .rwd_side a {
+            color: orange;
+        }
+
+
+
+
+
+
+        /* -------------上為NAVAGATION---------- */
+
+        .section {
+            max-width: 100%;
+            height: 100vh;
+        }
+
+        .section1 {
+            background: url("https://shoplineimg.com/58dca354d4e395b2c2000920/59d257009a76f075380003c4/2000x.webp?source_format=jpg");
+            background-position: center center;
+            position: relative;
+            background-attachment: fixed;
+        }
+
+        .s1_logo_wrap {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 5%;
+            top: 5%;
+            transition: .5s;
+        }
+
+        .s1_right_overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            /* background: linear-gradient(to left,rgba(0,0,0,.8),transparent); */
+            /* z-index: -1; */
+            background: rgba(0, 0, 0, .8)
+        }
+
+        .cube_wrap {
+            width: 40%;
+            height: 40vh;
+            position: absolute;
+            top: 25%;
+            right: 20%;
+            /* background:rgba(255, 255, 255, .5); */
+            border: 7px solid #fff;
+        }
+
+        .s1_cube_left_overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 26%;
+            ;
+            background: rgba(255, 255, 255, .5);
+
+        }
+
+        /* .cube{
+            position: absolute;
+             right: 0;            
+            width:41vw;
+            height: 40vh;;
+        }
+        .cube_path{             /*方面的內的顏色 */
+
+        /* fill:transparent;
+            opacity: .3;
+            stroke: #fff;
+            stroke-width: 20px;       
+        } */
+
+        /* .cube path{
+            fill:transparent;;
+            stroke: #fff;;
+            stroke-width: 5;
+            stroke-dasharray: 10
+        } */
+
+        .s1_cube_text {
+            width: 50%;
+            position: absolute;
+            top: 50%;
+            right: 10%;
+            transform: translateY(-50%);
+            z-index: 1;
+
+        }
+
+        .s1_cube_text h1 {
+            font-size: 70px;
+            color: #fff;
+            font-weight: normal;
+
+        }
+
+        .s1_cube_text h2 {
+            color: #DDD;
+            font-weight: 400;
+            text-align: center;
+
+        }
+
+        .s1_cube_text h2 span {
+            margin-right: 20px;
+        }
+
+        .s1_cube_left_overlay_btn {
+            display: block;
+            width: 100%;
+            height: 100%;
+            ;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 25px;
+            /* letter-spacing: 5px; */
+        }
+
+        .s1_cube_left_overlay_btn a {
+            /*這個裡面有class="btn_hover" */
+            display: block;
+            transform: rotate(270deg);
+            color: orange;
+            text-decoration: none;
+            transition: .5s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .s1_cube_left_overlay_btn::after {
+            background: orange;
+            position: absolute;
+            z-index: 0;
+            height: 0%;
+            left: 0;
+            top: 0;
+            width: 100%;
+            content: '';
+            transition: .5s;
+        }
+
+        .arrow_wrap {
+            color: #fff;
+            font-size: 40px;
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all .5s;
+            opacity: 0;
+        }
+
+
+
+        /* 以下為.s1_logo_wrap , .s1_cube_left_overlay_btn 的 hover 效果 */
+
+        .s1_logo_wrap:hover {
+            transform: scale(1.2)
+        }
+
+        .s1_cube_left_overlay:hover .s1_cube_left_overlay_btn::after {
+            height: 100%;
+        }
+
+        .s1_cube_left_overlay_btn:hover .btn_hover {
+            color: #fff;
+        }
+
+        .s1_cube_left_overlay:hover .arrow_wrap {
+            bottom: -5%;
+            opacity: 1;
+        }
+
+
+
+        /* -------------------section2---------------------- */
+
+        .section2 {
+            background: #aaa url("https://shoplineimg.com/58dca354d4e395b2c2000920/5a45fbf69f9a4f4e3a003b9f/2000x.webp?source_format=jpg");
+            ;
+             background-attachment: fixed;
+            background-size: cover;
+            position: relative;
+            display: flex;
+        }
+
+        .s2_overlay {
+            position: absolute;
+            width: 70%;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, .9);
+            clip-path: polygon(0 0, 81.5% 0, 57.5% 100%, 0% 100%);
+            z-index: 0;
+        }
+
+        .tag_wrap {
+            position: absolute;
+            top: 5%;
+            z-index: 9;
+
+        }
+
+        .tag_line {
+            transition: 2s;
+            width: 0px;
+            height: 1px;
+            background: rgba(255, 255, 255, .7);
+            position: absolute;
+        }
+
+        .tag {
+            display: block;
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, .7);
+            position: absolute;
+            left: 40px;
+            ;
+
+        }
+
+        .s2_left_wrap {
+            position: relative;
+            /* color:#000; */
+            /* top:50%;
+            left: 20%; */
+            /* transform: translate(-50%,-50%); */
+            flex-basis: 40%;
+            margin: auto;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            ;
+            flex-direction: column;
+        }
+
+        .s2_left_content_title {
+            font-family: "微軟正黑體", sans-serif;
+            font-size: 2em;
+            color: #fff;
+            ;
+            line-height: 80px;
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        .s2_left_content {
+            display: block;
+            transition: .8s;
+            width: 500px;
+            text-align: justify;
+            height: 600px;
+            font-size: 1.4em;
+            font-family: 'Oswald', "微軟正黑體", sans-serif;
+            color: #fff;
+            line-height: 60px;
+        }
+
+        .big_about_wrap {
+            position: relative;
+            flex-basis: 60%;
+            height: 100vh;
+            background: rgba(255, 255, 255, .3);
+            ;
+            top: 0;
+            right: 0;
+            clip-path: polygon(28% 0, 100% 0%, 100% 100%, 0 100%);
+            z-index: 3;
+        }
+
+        .big_about_wrap h2 {
+            font-size: 390px;
+            position: absolute;
+            top: 0%;
+            right: -100%;
+            ;
+            transition: 1.2s;
+            color: rgb(0, 0, 0, .6)
+        }
+
+        /* -----------------section3---------------------- */
+
+        .section3 {
+            background: rgba(0, 0, 0, .9);
+            display: flex;
+            flex-wrap: wrap;
+            position: relative;
+             
+        }
+
+        .section3_left_wrap {
+            position: relative;
+            flex: 1;
+            background: url("https://shoplineimg.com/58dca354d4e395b2c2000920/59d257569f9a4f2783006172/2000x.webp?source_format=jpg");
+            background-size: cover;
+            background-position:right center;
+            background-attachment: fixed;
+
+        }
+
+        .s3_left_overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, .6);
+        }
+
+        .s3_cube {
+            position: absolute;
+            right: -10%;
+            top: 15%;
+            width: 700px;
+            height: 700px;
+            ;
+        }
+
+        .s3_cube_path {
+            fill: transparent;
+            stroke: #fff;
+            opacity: .9;
+            stroke-width: 4;
+            position: absolute;
+            stroke-dasharray:0;
+            stroke-dashoffset: 0;
+            transition: 2s;
+        }
+
+
+        .section3_left_content {
+            position: absolute;
+            color: #FFF;
+            top: 30%;
+            left: 40%;
+        }
+
+        .section3_left_content h2 {
+            font-size: 40px;
+            font-family: 'Oswald', "微軟正黑體", sans-serif;
+        }
+
+        .section3_left_content span {
+            font-size: 25px;
+
+        }
+
+        .s3_btn_wrap {
+            display: block;
+            text-decoration: none;
+            width: 120px;
+            height: 60px;
+            margin: 0 auto;
+            position: absolute;
+            top: 50%;
+            left: 75%;
+            transform: translate(-50%, -50%);
+            z-index: 14;
+
+        }
+
+        .s3_btn_wrap span {
+            transition: .8s;
+            position: absolute;
+            top: 10%;
+            left: 32%;
+            /* transform: translate(-50% -50%); */
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .s3_btn_wrap .cls-1 {
+            transition: all .8s;
+            fill: none;
+            stroke: yellow;
+            stroke-miterlimit: 10;
+            stroke-width: 10px;
+            stroke-dasharray: 370;
+            stroke-dashoffset: 100;
+
+        }
+
+        .s3_btn_wrap:hover .btn_svg .cls-1 {
+            stroke-dasharray: 790;
+            stroke-dashoffset: 0;
+            ;
+            stroke-width: 5px;
+
+
+        }
+
+        .s3_btn_wrap:hover span {
+            letter-spacing: 10px;
+            left: 10%;
+            ;
+        }
+
+        .s3_btn_wrap span.line {
+            display: block;
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            width: 20px;
+            height: 2px;
+            ;
+            background: yellow;
+            opacity: 0;
+        }
+
+        span.line2 {
+            width: 10px;
+            ;
+            transform: rotate(45deg) translate(0px, -9px)
+        }
+
+        span.line3 {
+            width: 10px;
+            ;
+            transform: rotate(135deg) translate(0px, -9px)
+        }
+
+        .s3_btn_wrap:hover span.line {
+            opacity: 1;
+            left: 95%;
+        }
+
+        .section3_right_wrap {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .section3_right_content_wrap {
+            width: 60%;
+            height: 80%;
+            ;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .icon_wrap {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .icon_wrap .icon_text {
+            color: #fff;
+            margin-left: 30px;
+        }
+
+        .icon_text h2 {
+            margin-bottom: 5px;
+        }
+
+        .icon_text span {
+            letter-spacing: 2px;
+        }
+
+        .icons {
+            /** 每個svg icon **/
+            width: 100px;
+            height: 100px;
+        }
+
+        #innovation_icon_path {
+            fill: transparent;
+            stroke: #fff;
+            stroke-width: 3px;
+            stroke-dasharray: 1300;
+
+        }
+
+
+        .intergration_icon_path1,
+        .intergration_icon_path2 {
+            fill: #fff;
+        }
+
+        .intergration_icon_path2,
+        .intergration_icon_path3 {
+            stroke: #fff;
+            stroke-miterlimit: 10;
+        }
+
+        .intergration_icon_path3 {
+            fill: none;
+            stroke-width: 5px;
+        }
+
+        .join_icon_path {
+            fill: transparent;
+            stroke: #fff;
+            stroke-width: .5;
+        }
+
+        /*---------------section4---------- --*/
+
+        .section4 {
+            position: relative;
+            height: 70vh;
+            display: flex;
+            background: #333;
+        }
+
+        .section4 .section4_left,
+        .section4_right {
+            flex: 1
+        }
+
+        .section4_left {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .s4_left_overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, .6);
+            z-index: 0;
+            clip-path: polygon(0 0, 100% 0%, 89% 100%, 0% 100%);
+        }
+
+        .section4_left_wrap {
+            width: 300px;
+            height: 400px;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .contact_info {
+            color: #FFF;
+
+        }
+
+        .contact_info h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .contact_info span {
+
+            font-size: 20px;
+
+        }
+
+        .social_icon {
+            color: #fff;
+            display: flex;
+            ;
+            width: 400px;
+            justify-content: space-between;
+        }
+
+        .social_icon span {
+            font-size: 40px;
+        }
+
+        .section4_right {
+
+
+            justify-content: space-between;
+        }
+
+        .section4_right h2 {
+            color: #fff
+        }
+
+        .wrap {
+            width: 450px;
+            margin: 100px auto;
+
+            outline: 2px solid #fff;
+            outline-offset: 30px;
+        }
+
+        .mat-label {
+            display: block;
+            font-size: 16px;
+            transform: translateY(25px);
+            color: #e2e2e2;
+            transition: all 0.5s;
+        }
+
+        .mat-input {
+            position: relative;
+            background: transparent;
+            width: 100%;
+            border: none;
+            outline: none;
+            padding: 8px 0;
+            font-size: 16px;
+        }
+
+        .mat-div {
+            padding: 30px 0 0 0;
+            position: relative;
+        }
+
+        .mat-div:after,
+        .mat-div:before {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #e2e2e2;
+            bottom: 0;
+            left: 0;
+            transition: all 0.5s;
+        }
+
+        .mat-div::after {
+            background-color: orange;
+            transform: scaleX(0);
+        }
+
+        .is-active::after {
+            transform: scaleX(1);
+        }
+
+        .is-active .mat-label {
+            color: orange;
+        }
+
+        .is-completed .mat-label {
+            font-size: 12px;
+            transform: translateY(0);
+        }
+
+        button {
+            background-color: #fff;
+            border: none;
+            display: block;
+            margin: 35px auto;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        /* -----------------------media query------------------------- */
+
+        @media screen and (max-width:600px) {
+            .side_nav {
+                display: none;
+            }
+            .rwd_nav {
+                display: block;
+            }
+
+
+            /*-------------- section1 MQ--------------- */
+            .section1{
+                /* background-attachment: unset; */
+            }
+            .section2{
+                /* background-attachment: unset;  */
+            }
+            .cube_wrap {
+                display: none;
+            }
+            .s1_right_overlay {
+                width: 100%;
+                background: linear-gradient(to top, rgba(0, 0, 0, .8), transparent);
+            }
+            .s1_logo_wrap {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 120px;
+                height: 120px;
+                ;
+                z-index: 100;
+                position: absolute;
+            }
+            /* ------- MQ section2 ------- */
+            .big_about_wrap {
+                display: none;
+            }
+            .s2_left_content_wrap {
+                margin-top: 6em;
+            }
+            /* .overlay{
+                width: 100%;
+            } */
+            .tag_wrap {
+                z-index: 100;
+            }
+
+            .s2_left_wrap {
+                flex-basis: 100%;
+                height: 100vh;
+                justify-content: center;
+                background: rgba(0, 0, 0, .6)
+            }
+            .s2_left_content_title {
+                font-size: 1.4em;
+
+            }
+            .s2_left_content {
+                font-size: 1.1em;
+                display: block;
+                width: 70vw;
+            }
+            .s2_left_cube {
+                display: none;
+            }
+            /*-------------section3 MQ---------------  */
+            .section3 {
+                flex-direction: column;
+            }
+            .s3_cube {
+                display: none;
+            }
+            .section3_left_content {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%)
+            }
+            .section3_left_content h2 {
+                font-size: 35px;
+            }
+            .section3_left_content span {
+                font-size: 20px;
+            }
+            .s3_btn_wrap {
+                top: 80%;
+                left: 50%;
+               
+            }
+            /* -------section4 MQ */
+            .section4 {
+                height: 180vh;
+                width: 100%;
+                ;
+                flex-direction: column;
+            }
+            .contact_info h2 {
+                font-size: 25px;
+            }
+            .contact_info span {
+                font-size: 15px;
+            }
+            .social_icon {
+                width: 100%;
+                justify-content: space-between;
+                ;
+            }
+            .social_icon span {
+                font-size: 30px
+            }
+            .section4 .s4_left_overlay {
+                clip-path: none;
+            }
+
+            /* .section4  .section4_left */
+            .section4 .wrap {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="toggle wow fadeInDown">
+            <span></span>
+            <span class="hover"></span>
+            <span class="hover"></span>
+            <span></span>
+
+        </div>
+        <div class="rwd_nav">
+            <ul>
+                <li class="rwd_side">
+                    <a href="">SHOP</a>
+                </li>
+                <li class="rwd_side">
+                    <a href="">CONTACT</a>
+                </li>
+                <li class="rwd_side">
+                    <a href="">SUGGESTION</a>
+                </li>
+            </ul>
+        </div>
+        <div class="side_nav">
+            <div class="side_bar side1">
+                <a href="product2.html">SHOP</a>
+            </div>
+            <div class="side_bar side2 ">
+                <a>CONTACT</a>
+            </div>
+            <div class="side_bar side3">
+                <a> SUGGESTION</a>
+            </div>
+        </div>
+
+    </nav>
+
+    <div class="section section1">
+        <div class="s1_logo_wrap ">
+            <svg id="s1_logo_svg" data-name="圖層 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1495.52 1221.74">
+                <defs>
+                    <style>
+                        .cls-1 {
+                            fill: none;
+                            stroke: #fff;
+                            stroke-miterlimit: 10;
+                            stroke-width: 20px;
+                        }
+                    </style>
+                </defs>
+                <title>TAIGER_LOGO_SVG</title>
+                <polygon class="cls-1" points="1120.76 1.5 374.76 1.5 1.76 610.87 374.76 1220.24 1120.76 1220.24 1493.76 610.87 1120.76 1.5"
+                />
+                <polyline class="cls-1" points="230.1 584.27 427.83 1211.01 747.76 1060.71 1067.69 1211.01 1265.42 576.88" />
+                <line class="cls-1" x1="232.14" y1="584.38" x2="544.38" y2="322.37" />
+                <polygon class="cls-1" points="741.64 841.17 565.15 576.22 918.14 576.22 741.64 841.17" />
+                <line class="cls-1" x1="1263.38" y1="576.22" x2="951.14" y2="314.22" />
+                <line class="cls-1" x1="741.64" y1="1061.27" x2="741.64" y2="816.71" />
+                <polygon class="cls-1" points="253.02 230.42 419.06 427.1 540.34 325.35 253.02 230.42" />
+                <polygon class="cls-1" points="1228.74 216.9 1064.27 411.75 947.1 313.43 1228.74 216.9" />
+            </svg>
+        </div>
+        <div class="s1_right_overlay"></div>
+        <div class="cube_wrap">
+            <div class="s1_cube_left_overlay" id="section1_btn">
+                <span class="s1_cube_left_overlay_btn wow fadeInDown">
+                    <a class="btn_hover" href="">
+                        <span>ABOUT TAIGER</span>
+                    </a>
+                </span>
+                <div class="arrow_wrap">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
+            </div>
+            <div class="s1_cube_text">
+                <h1 class="wow fadeInDown">
+                    <span>T</span>
+                    <span>A</span>
+                    <span>I</span>
+                    <span>G</span>
+                    <span>E</span>
+                    <span>R</span>
+                </h1>
+                <h2 class="wow fadeInDown">
+                    <span>WHY</span>
+                    <span>NOT</span>
+                    <span>ME</span>
+
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div class="section section2">
+        <div class="s2_overlay"></div>
+        <div class="tag_wrap">
+            <div class="tag_line s2_tag_line"></div>
+            <span class="tag wow fadeInDown">ABOUT</span>
+        </div>
+        <div class="s2_left_wrap">
+            <div class="s2_left_content_wrap wow fadeInDown">
+                <span class="s2_left_content_title ">打造健身人的潮流</span>
+                <span class="s2_left_content">
+                    TAIGER的品牌概念是『發掘潛能、不斷超越自我』， 我們秉持著服務的心，滿足顧客需求、提供舒適且高質感的單品， 追求進化、尋求更新的技術，盡可能地將最好的單品呈現給各位。 我們的使命是以 TAIGER 的視野提供史上潮的運動配件與客戶製造連結。
+                </span>
+            </div>
+        </div>
+        <div class="big_about_wrap">
+            <h2 id="big_about">
+                <span>A B</span>
+                <br>
+                <span>OUT</span>
+            </h2>
+        </div>
+    </div>
+    <div class="section section3">
+        <div class="tag_wrap">
+            <div class="tag_line s3_tag_line"></div>
+            <span class="tag wow fadeInDown">MISSION</span>
+        </div>
+        <div class="section3_left_wrap">
+            <div class="s3_left_overlay"></div>
+            <span class="section3_left_content">
+                <h2>TAIGER的任務</h2>
+                <br>
+                <span>提供高品質的單品與貼心的服務</span>
+            </span>
+            <a href="product_page.html" class="s3_btn_wrap">
+                <span>SHOP</span>
+                <span class="line"></span>
+                <span class="line line2"></span>
+                <span class="line line3"></span>
+                <svg class="btn_svg" id="btn" data-name="圖層 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 297 105">
+
+                    <title>btn_svg</title>
+                    <rect class="cls-1" x="1.5" y="1.5" width="294" height="102" />
+                </svg>
+            </a>
+            <svg class="s3_cube" id="s3_cube" data-name="圖層 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 666 604">
+
+                <title>S3_cube</title>
+                <path class="s3_cube_path" d="M667,11V603H13V11H667m6-6H7V609H673V5Z" transform="translate(-7 -5)" />
+            </svg>
+
+        </div>
+        <div class="section3_right_wrap ">
+            <div class="section3_right_content_wrap">
+                <div class="icon_wrap innovation_icon_warp wow fadeInDown">
+                    <svg id="innovation_icon" class="icons" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512"
+                        xml:space="preserve">
+                        <path id="innovation_icon_path" d="M292.2,381.263h-72.511c-5.082,0-9.201,4.12-9.201,9.203c0,5.082,4.119,9.201,9.201,9.201H292.2
+                                    c5.083,0,9.202-4.119,9.202-9.201C301.402,385.383,297.283,381.263,292.2,381.263z M290.546,411.9h-69.201
+                                    c-5.082,0-9.201,4.121-9.201,9.202c0,5.083,4.119,9.202,9.201,9.202h69.201c5.082,0,9.201-4.119,9.201-9.202
+                                    C299.747,416.021,295.628,411.9,290.546,411.9z M221.82,442.111C239.735,458.673,241.58,462,248.731,462h13.774
+                                    c6.99,0,8.714-3.084,27.564-19.889H221.82z M360.699,221.629c0,62.305-53.581,97.22-53.581,146.388h-24.4
+                                    c0.021-60.599,53.142-92.516,53.142-146.388c0-100.84-159.828-100.998-159.828,0c0,53.823,52.2,84.366,53.409,146.388h-24.668
+                                    c0-49.168-53.581-84.083-53.581-146.388C151.191,87.725,360.699,87.589,360.699,221.629z M269.203,95.112H244.14V50h25.063V95.112z
+                                    M355.264,73.97L333.18,62.12l-22.056,41.103l22.085,11.85L355.264,73.97z M419.355,136.042l-14.599-20.372l-40.099,28.739
+                                    l14.598,20.371L419.355,136.042z M423.781,294.141l-45.115-18.278l-9.409,23.229l45.116,18.277L423.781,294.141z M438.789,205.555
+                                    h-51.125v25.062h51.125V205.555z M200.876,103.223L178.82,62.12l-22.084,11.85l22.055,41.103L200.876,103.223z M147.344,144.409
+                                    l-40.101-28.739l-14.599,20.372l40.1,28.738L147.344,144.409z M143.178,296.9L132.9,274.043l-45.116,20.283l10.276,22.857
+                                    L143.178,296.9z M124.338,205.555H73.211v25.062h51.127V205.555z" />
+                    </svg>
+                    <span class="icon_text wow fadeInDown">
+                        <h2>創新</h2>
+                        <span>我們不斷尋求新的技術與方法，來滿足高品質配件的需要</span>
+                    </span>
+                </div>
+                <div class="icon_wrap intergration_icon_wrap wow fadeInDown">
+                    <svg id="intergration_icon" class="icons" data-name="圖層 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 513 513">
+                        <title>intergration_icon</title>
+                        <rect class="intergration_icon_path1" x="257.64" y="2.2" width="6.03" height="180.83" rx="2.5" ry="2.5" />
+                        <rect class="intergration_icon_path1" x="240.56" y="141.04" width="6.03" height="50.63" rx="2.78" ry="2.78" transform="translate(-47.29 221.96) rotate(-45)"
+                        />
+                        <rect class="intergration_icon_path1" x="252.01" y="165.75" width="50.63" height="6.03" rx="2.78" ry="2.78" transform="translate(-39.11 246.53) rotate(-45)"
+                        />
+                        <rect class="intergration_icon_path2" x="32.48" y="350.15" width="198.96" height="6.63" rx="2.78" ry="2.78" transform="translate(-212.29 197.84) rotate(-45)"
+                        />
+                        <rect class="intergration_icon_path2" x="200.86" y="281.53" width="6.63" height="55.71" rx="2.5" ry="2.5" transform="translate(407.36 619.77) rotate(180)"
+                        />
+                        <rect class="intergration_icon_path2" x="176.48" y="253.39" width="6.63" height="55.71" rx="2.5" ry="2.5" transform="translate(460.04 102.45) rotate(90)"
+                        />
+                        <rect class="intergration_icon_path1" x="386.43" y="252.96" width="6.23" height="186.81" rx="2.78" ry="2.78" transform="translate(-131.83 377.9) rotate(-45)"
+                        />
+                        <rect class="intergration_icon_path1" x="346.42" y="254.9" width="6.23" height="52.31" rx="2.5" ry="2.5" transform="translate(629.58 -67.48) rotate(90)"
+                        />
+                        <rect class="intergration_icon_path1" x="320.11" y="278.79" width="6.23" height="52.31" rx="2.5" ry="2.5" />
+                        <circle class="intergration_icon_path3" cx="256.5" cy="256.5" r="254" />
+                    </svg>
+                    <span class="icon_text wow fadeInDown">
+                        <h2>整合</h2>
+                        <span>我們將時尚潮流融合在運動配件，你可以去約會接著立馬轉戰健身房</span>
+                    </span>
+                </div>
+                <div class="icon_wrap join_icon_wrap wow fadeInDown">
+                    <svg class="join_icon icons" id="join_icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        version="1.1" id="Capa_1" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 80.13 80.13" style="enable-background:new 0 0 80.13 80.13;"
+                        xml:space="preserve">
+                        <g>
+                            <path class="join_icon_path" d="M48.355,17.922c3.705,2.323,6.303,6.254,6.776,10.817c1.511,0.706,3.188,1.112,4.966,1.112   c6.491,0,11.752-5.261,11.752-11.751c0-6.491-5.261-11.752-11.752-11.752C53.668,6.35,48.453,11.517,48.355,17.922z M40.656,41.984   c6.491,0,11.752-5.262,11.752-11.752s-5.262-11.751-11.752-11.751c-6.49,0-11.754,5.262-11.754,11.752S34.166,41.984,40.656,41.984   z M45.641,42.785h-9.972c-8.297,0-15.047,6.751-15.047,15.048v12.195l0.031,0.191l0.84,0.263   c7.918,2.474,14.797,3.299,20.459,3.299c11.059,0,17.469-3.153,17.864-3.354l0.785-0.397h0.084V57.833   C60.688,49.536,53.938,42.785,45.641,42.785z M65.084,30.653h-9.895c-0.107,3.959-1.797,7.524-4.47,10.088   c7.375,2.193,12.771,9.032,12.771,17.11v3.758c9.77-0.358,15.4-3.127,15.771-3.313l0.785-0.398h0.084V45.699   C80.13,37.403,73.38,30.653,65.084,30.653z M20.035,29.853c2.299,0,4.438-0.671,6.25-1.814c0.576-3.757,2.59-7.04,5.467-9.276   c0.012-0.22,0.033-0.438,0.033-0.66c0-6.491-5.262-11.752-11.75-11.752c-6.492,0-11.752,5.261-11.752,11.752   C8.283,24.591,13.543,29.853,20.035,29.853z M30.589,40.741c-2.66-2.551-4.344-6.097-4.467-10.032   c-0.367-0.027-0.73-0.056-1.104-0.056h-9.971C6.75,30.653,0,37.403,0,45.699v12.197l0.031,0.188l0.84,0.265   c6.352,1.983,12.021,2.897,16.945,3.185v-3.683C17.818,49.773,23.212,42.936,30.589,40.741z"
+                            />
+                        </g>
+                        <span class="icon_text wow fadeInDown">
+                            <h2>參與</h2>
+                            <span>我們將優質的服務放第一與客戶製造強烈的連結</span>
+                        </span>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section section4">
+        <div class="tag_wrap">
+            <div class="tag_line"></div>
+            <span class="tag">CONTACT</span>
+        </div>
+        <div class="section4_left">
+            <div class="s4_left_overlay"></div>
+            <ul class="section4_left_wrap wow fadeInDown">
+
+                <li class="contact_info">
+                    <h2>EMAIL</h2>
+                    <span>TAIGER@gamail.com</span>
+                </li>
+                <li class="contact_info">
+                    <h2>PHONE</h2>
+                    <span>0912431527(TAO)</span>
+                </li>
+                <li class="social_icon">
+                    <span>
+                        <i class="fab fa-facebook-f"></i>
+                    </span>
+                    <span>
+                        <i class="fab fa-instagram"></i>
+                    </span>
+                    <span>
+                        <i class="fab fa-youtube"></i>
+                    </span>
+
+
+                </li>
+            </ul>
+        </div>
+        <div class="section4_right">
+            <div class="message_box">
+                <div class="wrap">
+                    <h2>SEND MESSAGE</h2>
+                    <div class="mat-div">
+                        <label for="text" class="mat-label">Name</label>
+                        <input type="text" class="mat-input" id="first-name">
+                    </div>
+
+                    <div class="mat-div">
+                        <label for="email" class="mat-label">Email</label>
+                        <input type="text" class="mat-input" id="last-name">
+                    </div>
+
+                    <div class="mat-div">
+                        <label for="text" class="mat-label">Message</label>
+                        <input type="text" class="mat-input" id="address">
+                    </div>
+                    <button>Submit</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    
+        <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+    <script>
+         new WOW().init();
+        var clicknum = 0
+        $(".toggle").on("click", function () {
+            $(this).toggleClass("active");
+            clicknum = clicknum + 1
+            if (clicknum === 1) {
+                $(".rwd_nav").css("left", "0%")
+                $(".side1").css("left", "66.6666666%");
+                $(".side2").css("left", "33.33333333%");
+                $(".side3").css("left", "0%");
+
+                clicknum = -1
+                console.log(clicknum);
+            }
+            else if (clicknum == 0) {
+                console.log(clicknum)
+                $(".rwd_nav").css("left", "-100%")
+                $(".side1").css("left", "-33.33333%");
+                $(".side2").css("left", "-33.33333%");
+                $(".side3").css("left", "-33.33333%");
+            }
+        })
+        $("#section1_btn").click(function (e) {
+            e.preventDefault();
+            var scrolltoS2 = $(".section2").offset().top;
+            console.log(scrolltoS2)
+
+            $("html").animate({
+                scrollTop: scrolltoS2,
+               
+            }, 500)
+            $(".s2_tag_line").css("width","160px")
+            $("#big_about").css("right","7%")
+        })
+        $(".mat-input").focus(function () {
+            $(this).parent().addClass("is-active is-completed");
+        });
+
+        $(".mat-input").focusout(function () {
+            if ($(this).val() === "")
+                $(this).parent().removeClass("is-completed");
+            $(this).parent().removeClass("is-active");
+        })
+        $(window).scroll(function () {
+            var scrollTop = $(this).scrollTop();
+            console.log(scrollTop)
+            if (scrollTop > 1289) {
+                $(".s3_cube_path").css("stroke-dasharray", "500");
+                $(".s3_tag_line").css("width", "160px")
+            }
+        })
+
+    </script>
+</body>
+
+</html>
